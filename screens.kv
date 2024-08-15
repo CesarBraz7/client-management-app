@@ -1,0 +1,213 @@
+<ScreenManagement>:
+    HomeScreen:
+    AddScreen:
+    EditScreen:
+    SearchScreen:
+
+<HomeScreen>:
+    name: 'home'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 40
+        Label:
+            text: 'Tabela de clientes'
+            font_size: 40
+            size: 70, 70
+            size_hint_y: None
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: None
+                height: dp(100)
+                id: header_box
+            ScrollView:
+                BoxLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    GridLayout:
+                        id: data_table
+                        cols: 8
+                        size_hint_y: None
+                        height: self.minimum_height
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            Button:
+                text: 'Adicionar clientes'
+                on_press: app.root.current = 'add'
+            Button:
+                text: 'Procurar clientes'
+                on_press: app.root.current = 'search'
+
+<AddScreen>:
+    name: 'add'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 40
+        Label:
+            text: 'Adicionar cliente'
+            font_size: 40
+            size: 70, 70
+            size_hint_y: None
+        GridLayout:
+            cols: 2
+            spacing: dp(10)
+            padding: dp(10)
+            Label:
+                text: 'Nome:'
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: 'CPF/CNPJ:'
+            TextInput:
+                id: cpfcnpj
+                multiline: False
+            Label:
+                text: 'Data de nascimento:'
+            TextInput:
+                id: birthdate
+                multiline: False
+            Label:
+                text: 'Telefone:'
+            TextInput:
+                id: phone
+                multiline: False
+            Label:
+                text: 'Número do processo:'
+            TextInput:
+                id: process
+                multiline: False
+            Label:
+                text: 'Selecione o Tipo de Processo'
+            Spinner:
+                id: process_type
+                values: ['Civil', 'Penal', 'Trabalhista', 'Previdenciário', 'Consumidor', 'Dpvat', 'Assessoria empresarial', 'Assessoria política']
+            Label:
+                text: 'Descrição:'
+            TextInput:
+                id: description
+                multiline: False    
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            Button:
+                text: 'Adicionar'
+                on_press: root.add_data()
+            Button:
+                text: 'Voltar'
+                on_press: app.root.current = 'home'
+
+<EditScreen>:
+    name: 'edit'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 40
+        Label:
+            text: 'Editar dados do cliente'
+            font_size: 40
+            size: 70, 70
+            size_hint_y: None
+        GridLayout:
+            cols: 2
+            spacing: dp(10)
+            padding: dp(10)
+            Label:
+                text: 'Nome:'
+            TextInput:
+                id: edit_name
+                multiline: False
+            Label:
+                text: 'Data de Nascimento:'
+            TextInput:
+                id: edit_birthdate
+                multiline: False
+            Label:
+                text: 'CPF/CNPJ:'
+            TextInput:
+                id: edit_cpf
+                multiline: False
+            Label:
+                text: 'Telefone:'
+            TextInput:
+                id: edit_phone
+                multiline: False
+            Label:
+                text: 'Número do Processo Judicial:'
+            TextInput:
+                id: edit_process_number
+                multiline: False
+            Label:
+                text: 'Tipo de processo:'
+            Spinner:
+                id: edit_process_type
+                values: ['Civil', 'Penal', 'Trabalhista', 'Previdenciário', 'Consumidor', 'Dpvat', 'Assessoria empresarial', 'Assessoria política']
+            Label:
+                text: 'Descrição:'
+            TextInput:
+                id: edit_description
+                multiline: False
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            Button:
+                text: 'Salvar Alterações'
+                on_press: root.save_edit()
+            Button:
+                text: 'Voltar'
+                on_press: app.root.current = 'home'
+<SearchScreen>:
+    name: 'search'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 40
+        Label:
+            text: 'Procurar clientes'
+            font_size: 40
+            size: 70, 70
+            size_hint_y: None
+        GridLayout:
+            size_hint_y: None
+            height: dp(70)
+            cols: 2
+            spacing: dp(10)
+            padding: dp(10)
+            Label:
+                text: 'Digite CPF ou CNPJ desejado:'
+            TextInput:
+                id: search_cpjcnpj
+                multiline: False
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_y: None
+                height: dp(100)
+                id: header_box
+            ScrollView:
+                BoxLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    GridLayout:
+                        id: content_box
+                        cols: 8
+                        size_hint_y: None
+                        height: self.minimum_height
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            Button:
+                text: 'Procurar'
+                on_press: root.search_cpf()
+            Button:
+                text: 'Voltar'
+                on_press: app.root.current = 'home'
